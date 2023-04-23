@@ -3,6 +3,9 @@ from unittest.mock import patch
 from io import StringIO
 from artemis import *
 
+valid_voice_command = 'valid_command.wav'
+invalid_voice_command = 'invalid_command.wav'
+
 
 class TestArtemis(unittest.TestCase):
 
@@ -52,6 +55,11 @@ class TestArtemis(unittest.TestCase):
         action = "pesquisar"
         search_terms = "maior planeta sistema solar"
         self.assertIsNone(executeAction(action, search_terms))
+
+    def test_listen(self):
+        print("Test: listen")
+        audio = listen(valid_voice_command)
+        self.assertIsNotNone(audio)
 
 
 if __name__ == '__main__':

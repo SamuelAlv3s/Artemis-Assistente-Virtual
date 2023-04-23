@@ -151,11 +151,16 @@ def welcomeMessage():
     print('')
 
 
-def listen():
-    with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source)
-        audio = r.listen(source, timeout=5)
-        return audio
+def listen(audio=None):
+    if audio:
+        with sr.AudioFile(audio) as source:
+            audio = r.listen(source)
+            return audio
+    else:
+        with sr.Microphone() as source:
+            r.adjust_for_ambient_noise(source)
+            audio = r.listen(source, timeout=5)
+            return audio
 
 
 def initArtemis():
