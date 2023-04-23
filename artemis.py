@@ -47,10 +47,10 @@ def scrapperSummary(search_terms):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'
     }
 
-    html = requests.get(
+    response = requests.get(
         f'https://www.google.com/search?q={search_terms}&tbm=nws', headers=headers).text
 
-    soup = BeautifulSoup(html, 'html.parser')
+    soup = BeautifulSoup(response, 'html.parser')
 
     results = soup.find_all('div', {'class': 'SoaBEf'})
 
@@ -124,8 +124,6 @@ def hasValidKeyword(text):
 
 
 def hasValidAction(text):
-    print(actions)
-    print(text)
     for action in actions:
         if action.lower() in text.lower():
             return action.lower()
