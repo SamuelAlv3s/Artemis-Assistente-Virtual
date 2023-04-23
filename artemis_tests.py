@@ -1,6 +1,4 @@
 import unittest
-from unittest.mock import patch
-from io import StringIO
 from artemis import *
 
 valid_voice_command = 'valid_command.wav'
@@ -59,7 +57,22 @@ class TestArtemis(unittest.TestCase):
     def test_listen(self):
         print("Test: listen")
         audio = listen(valid_voice_command)
+        text = r.recognize_google(audio, language='pt-BR')
+        hasPrefixo = hasValidPrefix(text)
+        hasAction = hasValidAction(text)
         self.assertIsNotNone(audio)
+        self.assertTrue(hasPrefixo)
+        self.assertTrue(hasAction)
+
+    def test_listen_invalid(self):
+        print("Test: listen invalid")
+        audio = listen(invalid_voice_command)
+        text = r.recognize_google(audio, language='pt-BR')
+        hasPrefixo = hasValidPrefix(text)
+        hasAction = hasValidAction(text)
+        self.assertIsNotNone(audio)
+        self.assertFalse(hasPrefixo)
+        self.assertTrue(hasAction)
 
 
 if __name__ == '__main__':

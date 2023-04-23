@@ -104,8 +104,8 @@ def deepScrapper(search_terms, retry=0):
         # print(e)
         if retry + 1 > 5:
             print('Não foi possível encontrar um resultado')
-            return
-        deepScrapper(search_terms, retry + 1)
+            return None
+        return deepScrapper(search_terms, retry + 1)
 
 
 def hasValidPrefix(text):
