@@ -1,0 +1,6 @@
+SpeechRecognition
+pyaudio
+nltk
+chardet
+pyfiglet
+rich
