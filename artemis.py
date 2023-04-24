@@ -157,6 +157,7 @@ def listen(audio=None):
     else:
         with sr.Microphone() as source:
             r.adjust_for_ambient_noise(source)
+            print("Ouvindo...")
             audio = r.listen(source, timeout=5)
             return audio
 
@@ -186,7 +187,6 @@ def initArtemis():
                         print('Ação não encontrada')
                 else:
                     print('Palavra-chave não encontrada')
-                isRunning = False
 
         except sr.UnknownValueError:
             print("Não entendi o que você disse")
