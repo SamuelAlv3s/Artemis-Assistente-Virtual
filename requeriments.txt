@@ -1,5 +1,6 @@
 SpeechRecognition
 pyaudio
+BeautifulSoup
 nltk
 chardet
 pyfiglet
